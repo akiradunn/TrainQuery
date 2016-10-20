@@ -3,6 +3,7 @@
 ~谁叫本汪是穷学生呢,哈哈
 
 Main.java提供了查询的入口;
+
 1.查询余票情况,结果在lefttickets.txt:
 通过在其中指定几个参数:
 出发站:start_station_name
