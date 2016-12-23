@@ -27,14 +27,13 @@ public class Json {//返回访问指定url返回的json数据
                      while ((line=bufferedReader.readLine())!=null) {  
                          entityStringBuilder.append(line);  
                      }
-                     //利用从HttpEntity中得到的String生成JsonObject  
-                    // System.out.println(entityStringBuilder.toString());
- 	               o=new JSONObject(entityStringBuilder.toString()); 
- 	               //System.out.println(o);
-                 } catch (Exception e) {  
+                    //利用从HttpEntity中得到的String生成JsonObject  
+                    //System.out.println(entityStringBuilder.toString());
+ 	               o=new JSONObject(entityStringBuilder.toString());
+                 } catch (Exception e) {
                      e.printStackTrace();  
-                 }   
-       } else {  
+                 }
+       } else {
            System.out.println("error code: " + returnCode);  
                } 
          }

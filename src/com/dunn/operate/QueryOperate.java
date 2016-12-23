@@ -11,7 +11,8 @@ import com.dunn.model.Json;
 public class QueryOperate {
 	private static JSONObject o = null;
 	public static void analyseLeftTickets(JSONObject o)throws Exception{
-		FileOutputStream writer = new FileOutputStream(System.getProperty("user.dir")+"\\result\\lefttickets.txt");
+		//FileOutputStream writer = new FileOutputStream(System.getProperty("user.dir")+"\\result\\lefttickets.txt");
+		FileOutputStream writer = new FileOutputStream("D:\\lefttickets.txt");
 		JSONArray array = o.getJSONArray("data");	
 		for(int i=0 ; i<array.length() ; i++){
 			JSONObject v = array.getJSONObject(i);
@@ -36,7 +37,8 @@ public class QueryOperate {
 	public static void analyseTicketPrice(JSONObject o){
 		JSONObject v = o.getJSONObject("data");
 		try {
-			FileOutputStream writer = new FileOutputStream(System.getProperty("user.dir")+"\\result\\price.txt");
+			//FileOutputStream writer = new FileOutputStream(System.getProperty("user.dir")+"\\result\\price.txt");
+			FileOutputStream writer = new FileOutputStream("D:\\price.txt");
 			writer.write(("硬卧价:"+v.getString("A3")+" ").getBytes());
 			writer.write(("硬座价:"+v.getString("A1")+" ").getBytes());
 			writer.write(("无座价:"+v.getString("WZ")).getBytes());
@@ -54,7 +56,7 @@ public class QueryOperate {
 	    //System.out.println(a);
 		String b = StationCode.getCode(end_station_name);
 	   // System.out.println(b);
-		String queryurl = "https://kyfw.12306.cn/otn/leftTicket/queryC?leftTicketDTO.train_date="+date+"&leftTicketDTO.from_station="+a+"&leftTicketDTO.to_station="+b+"&purpose_codes=ADULT";
+		String queryurl = "https://kyfw.12306.cn/otn/leftTicket/queryA?leftTicketDTO.train_date="+date+"&leftTicketDTO.from_station="+a+"&leftTicketDTO.to_station="+b+"&purpose_codes=ADULT";
 	    o = Json.getJsonResponse(queryurl);
 		QueryOperate.analyseLeftTickets(o);
 		System.out.println("success query! go to your project result dictory to see lefttickets.txt");
@@ -62,7 +64,7 @@ public class QueryOperate {
 	public static JSONObject getTicketsObject(String start_station_name , String end_station_name , String date)throws Exception{
 		start_station_name = StationCode.getCode(start_station_name);
 		end_station_name = StationCode.getCode(end_station_name);
-		String queryurl = "https://kyfw.12306.cn/otn/leftTicket/queryC?leftTicketDTO.train_date="+date+"&leftTicketDTO.from_station="+start_station_name+"&leftTicketDTO.to_station="+end_station_name+"&purpose_codes=ADULT";
+		String queryurl = "https://kyfw.12306.cn/otn/leftTicket/queryTicketPrice?leftTicketDTO.train_date="+date+"&leftTicketDTO.from_station="+start_station_name+"&leftTicketDTO.to_station="+end_station_name+"&purpose_codes=ADULT";
 	    o = Json.getJsonResponse(queryurl);
 		return o;
 	}
